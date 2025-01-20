@@ -1,0 +1,151 @@
+.loginsignup{
+    width: 100%;
+    height: calc(100vh - 80px);
+    padding-top: 10vh;
+    background-color:#eee ;
+}
+.cont{
+    background-color: #fff;
+    width: 400px;
+    height: auto;
+    padding: 30px 40px;
+    margin: auto;
+    gap: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border-radius: 20px;
+    outline: rgb(1, 0, 0) solid 1px;
+}
+.cont h1{
+    font-weight: 500;
+    margin: 10px auto;
+}
+.ls-fields{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.field input{
+    background-color: #fff;
+    width: 100%;
+    height: 30px;
+    border: none;
+    border-bottom:#333 solid 1px;
+    outline: none;
+    padding-left: 10px;
+    margin-top: 5px;
+}
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px rgb(255, 255, 255) inset;
+  }
+.field p{
+    font-size: 15px;
+}
+.eye{
+    width: 30px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+}
+.eye>img{
+    width: 20px;
+    height: auto;
+    cursor: pointer;
+}
+.password{
+    display: flex;
+    align-items: center;
+    border-bottom:#333 solid 1px;
+}
+.password>input{
+    border-bottom:none;
+}
+.btn>input{
+    width: 175px;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    background-color: lightcoral;
+    color: #fff;
+    font-weight: 500;
+    font-size: 20px;
+    cursor: pointer;
+}
+.btn{
+    margin: 10px auto;
+}
+.btn + div{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.login-here{
+    font-size: 12px;
+    color: #555;
+    font-weight: 500;
+}
+.login-here span{
+    color: lightcoral;
+    font-weight: 600;
+    cursor: pointer;
+}
+.agree{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #555;
+}
+.agree p span{
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: 600;
+}
+@media (max-width:1280px){
+    .loginsignup{
+        padding-top: 8vh;
+    }
+    .cont{
+        padding: 3%;
+    }
+    .btn>button{
+        width: 150px;
+        font-size: 18px;
+    }
+    .ls-fields{
+        gap: auto;
+    }
+    
+}
+@media (max-width:1024px){
+    .loginsignup{
+        height: calc(100vh - 100px);
+    }
+    .cont{
+        width: 375px;
+        padding: 30px 40px;
+    }
+    .btn > button{
+        width: 120px;
+        font-size: 18px;
+        height: 35px;
+    }
+}
+@media (max-width:800px){
+    .cont{
+        width: 350px;
+    }
+}
+@media(max-width:576px){
+    .cont{
+        padding: 8%;
+    }
+    .btn+div{
+        gap: 10px;
+    }
+    button{
+        height:30px ;
+    }
+}

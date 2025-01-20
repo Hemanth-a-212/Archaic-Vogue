@@ -1,0 +1,145 @@
+.category{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top:100px;
+    gap: 30px;
+    height: 100%;
+}
+.category-prod{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-top: 50px;
+    gap: 3vw;
+}
+.explore-more{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    width: 150px;
+    height: 50px;
+    background-color: #e2e2e2;
+    border-radius: 25px;
+    color: #727272;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 500;
+}
+.banner{
+    width: 75%;
+    display: flex;
+    border-radius: 5px;
+    height: 175px;
+    justify-content:space-evenly ;
+    background: linear-gradient(135deg,#e89440, #b64417);
+    
+}
+.banner-right{
+    width: 30%;
+    height: 100%;
+    position: relative;
+}
+.banner-right img{
+    height: 140%;
+    width: auto;
+    position: absolute;
+    right: 20px;
+    top: -40%;
+}
+.banner-left{
+    width: 60%;
+    height: 100%;
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+}
+.banner-left h2{
+    font-size:25px;
+    color: rgb(255, 227, 196);
+ }
+
+@media(max-width:1280px){
+    .banner-left h2{
+       font-size:20px;
+    }
+    .category-prod{
+        gap: 5vw;
+    }
+}
+@media (max-Width:1024px){
+    .category-prod{
+        grid-template-columns: 1fr 1fr ;
+        gap: 8vw;
+        margin: 30px 0;
+    }
+    .category{
+        margin-top:75px;
+        gap: 20px;
+    }
+    .banner-left h2{
+        font-size:18px;
+        font-weight: 600;
+     }
+     .banner{
+        height: 150px;
+        
+    }
+   
+}
+@media (max-width:800px){
+    .category-prod{
+        grid-template-columns: 1fr 1fr ;
+        margin-top: 25px;
+        gap: calc((100vw - 300px)/4);
+    }
+    .category{
+        margin-top:45px;
+        gap: 15px;
+    }
+    .banner{
+        height: 100px;
+    }
+    .banner-right img{
+        right: 10px;
+    }
+    .banner-left{
+        padding: 10px 20px;
+    }
+    .banner-left h2{
+        font-size: 15px;
+    }
+   
+}
+
+@media (max-width:576px){
+    .category{
+        margin-top:75px;
+        gap: 20px;
+    }
+    .category-prod{
+        gap: calc((100vw - 300px)/6);
+    }
+    .banner-right img{
+        right: 5px;
+        height: 160%;
+        top: -60%;
+    }
+    .banner-left{
+        padding: 0;
+    }
+    .banner-left h2{
+        font-size: 17px;
+        font-weight: 500 ;
+    }
+    .explore-more{
+        width: 120px;
+        height: 35px;
+        font-weight: 500;
+        font-size: 12px;
+    }
+    .banner{
+        width: 85%;
+    }    
+}

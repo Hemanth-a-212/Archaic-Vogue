@@ -1,0 +1,393 @@
+.navbar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 25px;
+    box-shadow: 0 1px 3px -2px black;
+    height: 100px;
+    background-color: #cca484;
+    width: 100%;
+}
+.nav-logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+}
+.nav-logo img{
+    width: 60px;
+    height: 60px;
+}
+.nav-logo p{
+    color:#572617;
+    font-size: 35px;
+    font-family: "Italiana", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+.nav-menu{
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 30px;
+    font-size: 18px;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 600;
+}
+.nav-dropdown{
+    display: flex;
+    justify-content: space-around;
+    width: 70%;
+    align-items: center;
+}
+.nav-menu li{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+    height: 35px;
+    padding: 2px 15px;
+    border-radius:18.5px ;
+    transition: transform 175ms ease-in-out;
+}
+.nav-menu li:hover{
+    transform: translateY(-3px) scale(1.1);
+    
+}
+.nav-login-cart{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    gap: 15px;
+}
+.nav-login-cart button{
+    width: auto;
+    padding: 0 15px;
+    height: 40px;
+    outline: none;
+    border: none;
+    border-radius:75px ;
+    color: #cca484;
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    background: #572617;
+    cursor: pointer;
+    text-wrap: nowrap;
+}
+.nav-login-cart button:active{
+    background: #431b0f;
+}
+.nav-login-cart button:hover{
+    box-shadow: 0px 0px 10px -2px rgb(110, 58, 45);
+}
+.nav-login-cart img{
+    width: 32px;
+    height: auto;
+}
+.cart-item-count{
+    width: 15px;
+    height: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: -3px;
+    top: 0;
+    border-radius: 10px;
+    font-size: 12px;
+    background-color: red;
+    color: white;
+}
+.nav-menu hr{
+    border: none;
+    width: 80%;
+    height: 3px;
+    border-radius: 10px;
+    background-color: #592418;
+}
+
+.nav-drop-icon{
+ display: none;  
+ cursor: pointer;     
+}
+.user-icon{
+    cursor: pointer;
+}
+.user-menu-dropdown{
+    background-color: aliceblue;
+    padding: 25px;
+    border-radius: 10px;
+    position: absolute;
+    text-wrap: nowrap;
+    top:50px;
+    right: 50%;
+    transform: translateX(50%);
+    display: none;
+    z-index: 2;
+}
+.user-menu-visible{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+.deleteAcc{
+    cursor: pointer;
+}
+.deleteAcc:hover{
+    text-decoration:underline;
+    transform: translateY(-2px) scale(1.05)  ;
+}
+.del-confirm{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000b;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+}
+html.no-scroll {
+    overflow: hidden;
+    height: 100%;
+  }
+.del-confirm-visible{
+    display: flex;
+}
+.del-confirm>div{
+    background-color: aliceblue;
+    padding: 30px;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 10px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 30px;
+    left: 50%;
+    top: 50%;
+}
+.btn-cont{
+display: flex;
+width: 100%;
+justify-content: space-evenly;
+}
+.btn-cont button{
+    width: fit-content;
+    font-size: 20px;
+    font-weight: 500;
+    background-color: #572617;
+    border-radius:50px;
+    color: #cca484;
+    outline: none;
+    border: none;
+    padding: 10px 20px ;
+    cursor: pointer;
+}
+
+@media(max-width:1280px){
+    .navbar{
+        padding: 12px 50px;
+    }
+    .nav-logo img{
+       width: 50px;
+       height: auto;
+    }
+    .nav-logo p{
+      width: auto;
+      font-size: 30px;
+    }
+    .nav-menu{
+        gap:5px;
+        font-size: 16px;
+    }
+}
+@media(max-width:1024px){
+    .nav-logo img{
+        width: 45px;
+        height: auto;
+     }
+     .nav-logo p{
+       width: auto;
+       font-size: 25px;
+     }
+    .navbar{
+        padding: 12px 20px;
+    }
+    .nav-menu li{
+        padding: 2px 10px;
+        height: 35px;
+    }
+    .nav-menu{
+        gap:0px;
+        font-size: 14px;
+    }
+    .nav-login-cart button{
+        width: auto;
+        padding: 0 10px; 
+        height: 35px;
+        font-size: 15px;
+    }
+}
+@media (max-width:800px){
+ 
+    .navbar{
+        padding: 10px 0;
+    }
+
+    .nav-drop-icon{
+        display: block;
+        width: 25px;
+        height: auto;
+        position: absolute;
+        right: 50px;
+    }
+    .nav-menu li{
+        font-size: 15px;
+    }
+    .nav-menu{
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+    .nav-dropdown{
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 250px;
+        height: 300px;
+        position: absolute;
+        background-color: aliceblue;
+        z-index: 2;
+        right: 10px;
+        top: 80px;
+        padding: 25px;
+        border-radius: 10px;
+        outline: #572617 solid 1px;
+    }
+    .nav-login-cart{
+        gap: 20px;
+    }
+    .nav-menu-visible{
+        display: flex;
+        animation: fade-in 0.5s;
+    }
+    .nav-logo{
+        width: 75%;
+    }
+    .nav-menu li{
+        font-size: 18px;
+    }
+    .user-menu-dropdown{    
+    width: fit-content;
+    padding: 20px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 1px solid #431b0f;
+    left: -200px;
+}
+.del-confirm>div{
+    width: 400px;
+    padding: 30px;
+    font-size: 18px;
+    height: 175px;
+    gap: 25px;
+}
+    
+}
+@media (max-width:576px){
+    .nav-logo img{
+        width: 45px;
+     }
+     .nav-logo p{
+       font-size: 35px;
+     }
+    .nav-logo{
+        width: auto;
+    }
+    .navbar{
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        padding: 12px 30px;
+        height: 125px;
+    }
+    .nav-drop-icon{
+        right: 30px;
+        width: 30px;
+    }
+    .nav-dropdown{
+        width: fit-content;
+        padding: 20px;
+        top: 100px;
+        font-size: 15px;
+        height: 300px;
+    }
+    .user-menu-dropdown{
+        top: 80%;
+        left: -175px;
+    }
+    .nav-login-cart{
+        height: 75px;
+    }
+    .nav-login-cart button{
+        height:40px ;
+        width: auto;
+        padding: 0 10px; 
+        font-size: 18px;
+    }
+    .nav-login-cart img{
+        height: 35px;
+        width: auto;
+    }
+    .cart-item-count{
+        top: 10px;
+        width: 18px;
+    height: 18px;
+    right: -3px;
+    font-size: 13px;
+    font-weight: 600;
+    }
+    .nav-menu{
+        justify-content: space-evenly;
+        height: 100%;
+    }
+    .nav-menu li{
+        font-size: 20px;
+    }
+    .del-confirm>div{
+        width: 350px;
+        padding: 20px;
+        font-size: 15px;
+        height: 150px;
+        flex-direction: column;
+        gap: 20px;
+    }
+    .btn-cont button{
+        height: fit-content;
+        font-size: 18px;
+        padding: 10px 20px ;
+        cursor: pointer;
+    }
+}
+
+
+@keyframes fade-in{
+    0%{
+        opacity: 0;
+        transform:translateY(-80px) ;
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

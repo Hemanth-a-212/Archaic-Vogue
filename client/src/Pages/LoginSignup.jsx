@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import eye from "../Components/Assets/eye.png"
 import eye_closed from "../Components/Assets/eye-closed.png"
 import './css/LoginSignup.css';
+import log_img from "../Components/Assets/login-img.jpg"
 
 const LoginSignup = () => {
   const [showPwd,setShowPwd]=useState(false);
@@ -11,6 +12,17 @@ const LoginSignup = () => {
     password:"",
     email:""
   })
+  const LoginRef = useRef(null);
+  const SignupRef = useRef(null);
+
+useEffect(()=>{
+  if(state==="Login" && LoginRef.current){
+    LoginRef.current.focus();
+  }else if(state==="Sign Up" && SignupRef.current){
+    SignupRef.current.focus();
+  }
+},[state])
+
 const login = async ()=>{
   let resData;
   await fetch("http://localhost:5000/login",{
@@ -52,21 +64,25 @@ const changeData = async(e)=>{
 
   return (
     <div className='loginsignup'>
+      <div>
+      <div className="login-img">
+        <img src={log_img} alt="" />
+      </div>
       <form className="cont" onSubmit={()=>state==="Login"?login():signup()}>
         <h1>{state}</h1>
         <div className="ls-fields">
           {state==='Sign Up'?<div className='field'>
             <p>Name</p>
-            <input onChange={changeData} name='name' value={data.name} type="text" placeholder='Enter your name...' required />
+            <input ref={SignupRef} onChange={changeData} name='name' value={data.name} type="text" placeholder='Name' required />
           </div>:<></>}
-          <div className='field'>
+          <label className='field'>
             <p>Email</p>
-            <input onChange={changeData} name='email' value={data.email} type="email" placeholder='Enter your email address...' required/>
-          </div>
+            <input ref={LoginRef}  onChange={changeData} name='email' value={data.email} type="email" placeholder='Email' required/>
+          </label>
           <div className='field'>
             <p>Password</p>
             <div className="password">
-            <input onChange={changeData} name='password' value={data.password} type={showPwd?"text":"password"} placeholder='Enter Password' required />
+            <input onChange={changeData} name='password' value={data.password} type={showPwd?"text":"password"} placeholder='Password' required />
             <div className="eye" onClick={()=>setShowPwd((p)=>!p)}>{showPwd?<img src={eye} alt="" />:<img src={eye_closed} alt="" />}</div>
             </div>
           </div>
@@ -82,6 +98,7 @@ const changeData = async(e)=>{
         </div>:<></>}
         </div>
       </form>
+      </div>
     </div>
   )
 }

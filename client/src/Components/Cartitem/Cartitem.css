@@ -163,6 +163,7 @@
 @media (max-width:800px){   
 .cart-total-cont{
     flex-direction: column;
+    align-items: center;
     gap: 3rem;
 }
 .cart{
@@ -175,13 +176,26 @@
 .cart{
     margin: 50px 4vw;
 }
+.cartitem-promocode{
+    width: 80%;
+    gap: 10px;
+}
+.total{
+    width: 80%;
+    align-items: center;
+    gap: 20px;
+}
+.total button{
+    margin: 20px 0;
+    height: 50px;
+}
 }
 @media (max-width:576px){
 
     .cartitem-format{
         padding: 10px 0 ;
         font-size: 16px;
-        grid-template-columns: 0.5fr 1fr 0.75fr 0.5fr 0.75fr 0.25fr ;
+        grid-template-columns: 0.25fr 1fr 0.5fr  ;
     }
     .cart{
         margin: 30px 4vw;
@@ -197,21 +211,29 @@
      .cart-total-item{
         margin: 0.75rem 0 ;
      }
+     .total{
+        width: 100%;
+    gap: 10px;
+     }
      .total h1{
         font-size: 20px;
     }
     .total button{
-        width: 8rem;
+        width: 200px;
         font-size: 15px;
      }
     .cartitem-promocode{
-        width: 80%;
+        width: 100%;
         gap: 10px;
-    }.promobox *{
+    }
+    .promobox *{
         padding: 0.5rem;
     }
     .cartitem-promocode p{
         font-size: 15px;
+    }
+    .heading-format{
+        display: none;
     }
 }
 

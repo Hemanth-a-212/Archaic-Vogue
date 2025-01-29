@@ -8,15 +8,15 @@
     position: relative;
     display: flex;
     justify-content: end;
-    align-items: center;
-    padding: 0 50px;
+    align-items:flex-start;
+    padding:30px;
 }
 .inner-nl{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 75%;
-    gap: 40px;
+    gap: 20px;
     display: flex;
     align-items: end;
 }
@@ -57,7 +57,7 @@
     background-color: #cca484;
     font-size: 16px;
     font-weight: 600;
-    border-radius: 20px;
+    border-radius: 5px 0 0 5px;
     padding-left:20px ;
 }
 .nl-email>button{
@@ -65,23 +65,21 @@
     height: 100%;
     border: none;
     outline: none;
-    border-radius: 20px;
     font-size: 16px;
     background-color: #572617;
     color: #cca484;
     cursor: pointer;
-    position: absolute;
-    right: 0;
+    border-radius:0 5px 5px 0;
 }
 
 @media(max-width:1280px){
     .newsletter{
-        height:20vw;
+        height: 250px;
         width: 80%;
-        padding: 0px 40px;
+        padding:40px;
     }
     .inner-nl{
-        gap: 2.5vw;
+        gap: 20px;
         width: 80%;
     }
     .inner-nl p{
@@ -107,11 +105,12 @@
 }
 @media (max-Width:1024px){
     .newsletter{
-        height: 25vw;
-        padding: 0px 25px;
+        height: 230px;
+        padding: 25px;
     }
     .inner-nl{
-        width: 85%;
+        width: 80%;
+        gap: 15px;
     }
     .inner-nl p{
         font-size: 15px;
@@ -121,7 +120,7 @@
     }
     .nl-email{
         height: 30px;
-        width: 65%;
+        width: 70%;
     }
     .nl-email>input::placeholder{
         font-size: medium;
@@ -129,12 +128,16 @@
     .nl-email>input{
         font-size: 14px;
         font-weight: 500;
+        width: 70%;
+    }
+    .nl-email>button{
+        width: 30%;
     }
 }
 @media (max-width:800px){   
     .newsletter{
-        height: 30vw;
-        padding: 0px 15px;
+        height: 200px;
+        padding: 20px;
         width: 90%;
     }
     .inner-nl{
@@ -146,39 +149,48 @@
     .inner-nl h1{
         font-size: 20px;
     }
+    .nl-email{
+        width: 60%;
+    }
     .nl-email>input::placeholder{
         font-size: small;
     }
     .nl-email>input{
         font-size: 14px;
         font-weight: 500;
+        width: 70%;
     }
     .nl-email>button{
         font-size: 16px;
         width: 100px;
+        width: 30%;
     }
 }
 @media (max-width:576px){
 
     .newsletter{
-        height: 45vw;
-        padding: 10px 20px 10px 0 ;
+        /* padding: 15px; */
+        height: 180px;
+        align-items: center;
     }
     .inner-nl{
-        height: 100%;
         justify-content: space-evenly;
+        align-items: center;
+        /* gap: 10px; */
     }
     .inner-nl p{
         font-size: 13px;
         font-weight: 500;
-        width: 90%;
+        width: 100%;
+        text-align: center;
     }
     .inner-nl h1{
         font-size: 18px;
+        text-align: center;
     }
     .nl-email{
-        height: 25px;
-        width: 75%;
+        height: 30px;
+        width: 90%;
     }
     .nl-email>button{
         width: 100px;
@@ -186,6 +198,6 @@
         font-weight: 500;
     }
     .nl-email>input{
-        height: 25px;
+        /* height: 100%; */
     }
 }

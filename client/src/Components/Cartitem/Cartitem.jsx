@@ -7,7 +7,7 @@ const Cartitem = () => {
   return (
     <div className='cart'>
         <h1>Shopping Cart</h1>
-      <div className="cartitem-format">
+      <div className="cartitem-format heading-format">
         <p className='heading'>Product</p>
         <p className='heading'>Name</p>
         <p className='heading'>Price</p>
@@ -32,7 +32,7 @@ const Cartitem = () => {
         })}
         <hr className='median-line'/>
         <div className="cart-total-cont">
-        <div className="cartitem-promocode">
+            <div className="cartitem-promocode">
                 <p>
                 Add a gift card or promotion code</p>
                 <div className="promobox">

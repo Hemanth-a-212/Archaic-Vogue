@@ -5,10 +5,13 @@ import multer from 'multer'
 import cors from 'cors'
 import path from 'path'
 import fs from 'fs'
-import bcrypt from "bcrypt"
+import bcrypt from 'bcrypt'
+import dotenv from 'dotenv'
+
+dotenv.config();
 
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 //Middleware
 app.use(express.json());
@@ -142,7 +145,7 @@ app.post("/signup",async(req,res)=>{
         const newUser = insertEmail.rows[0]
 
         const data = {user:{id:newUser.id}};
-        const token = jwt.sign(data,"secret_key_ecom");
+        const token = jwt.sign(data,process.env.JWT_SECRET_KEY);
        
         return res.status(201).json({ success:true,token}); 
 
@@ -163,7 +166,7 @@ app.post("/login",async(req,res)=>{
           const match = await bcrypt.compare(password,user.rows[0].password);
           if(match){
             const data = {user:{id:user.rows[0].id}}
-            const token = jwt.sign(data,"secret_key_ecom")
+            const token = jwt.sign(data,process.env.JWT_SECRET_KEY)
             res.json({success:true,token})
           }else{
             res.json({success:false,errors:"Wrong Password"})
@@ -203,7 +206,7 @@ const fetchUser =async (req,res,next)=>{
     }
     else{
         try {
-            const data = jwt.verify(token,"secret_key_ecom");
+            const data = jwt.verify(token,process.env.JWT_SECRET_KEY);
             req.user=data.user;
             next();
         } catch (err) {

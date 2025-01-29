@@ -1,5 +1,4 @@
 import {createContext, useState, useEffect} from 'react'
-import banner from '../Components/Assets/banner';
 
 export const webContext = createContext(null);
 
@@ -74,7 +73,7 @@ const ContextProvider = (props) => {
         }
         return totalItem;
     }
-    const contextvalue = {all_product,banner,cartItems,totalItemsInCart,addToCart,removefromCart,getTotalCartamount};
+    const contextvalue = {all_product,cartItems,totalItemsInCart,addToCart,removefromCart,getTotalCartamount};
 
     return (
         <webContext.Provider value={contextvalue}>

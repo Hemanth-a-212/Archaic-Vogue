@@ -1,20 +1,27 @@
 .loginsignup{
     width: 100%;
-    height: calc(100vh - 80px);
-    padding-top: 10vh;
+    height: fit-content;
+    padding: 10vh 0;
     background-color:#eee ;
 }
+.loginsignup>div{
+    height: 500px;
+    width: fit-content;
+    margin:50px auto;
+    display: flex;
+}
+.login-img>img{
+    width: auto;
+    height: 100%;
+}
+
 .cont{
     background-color: #fff;
     width: 400px;
     height: auto;
     padding: 30px 40px;
-    margin: auto;
-    gap: 5px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    border-radius: 20px;
     outline: rgb(1, 0, 0) solid 1px;
 }
 .cont h1{
@@ -24,7 +31,8 @@
 .ls-fields{
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
+    margin: 1vh 0;
 }
 .field input{
     background-color: #fff;
@@ -35,6 +43,9 @@
     outline: none;
     padding-left: 10px;
     margin-top: 5px;
+}
+.field input::placeholder{
+    color: transparent;
 }
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px rgb(255, 255, 255) inset;
@@ -84,6 +95,7 @@ input:-webkit-autofill {
     font-size: 12px;
     color: #555;
     font-weight: 500;
+    margin: 10px 0;
 }
 .login-here span{
     color: lightcoral;
@@ -107,10 +119,7 @@ input:-webkit-autofill {
     .loginsignup{
         padding-top: 8vh;
     }
-    .cont{
-        padding: 3%;
-    }
-    .btn>button{
+    .btn>input{
         width: 150px;
         font-size: 18px;
     }
@@ -120,32 +129,42 @@ input:-webkit-autofill {
     
 }
 @media (max-width:1024px){
-    .loginsignup{
-        height: calc(100vh - 100px);
+    .loginsignup>div{
+        height: 450px;
     }
     .cont{
         width: 375px;
-        padding: 30px 40px;
     }
-    .btn > button{
+    .btn > input{
         width: 120px;
-        font-size: 18px;
-        height: 35px;
     }
 }
 @media (max-width:800px){
-    .cont{
-        width: 350px;
+    
+    .login-img{
+        display: none;
     }
 }
 @media(max-width:576px){
-    .cont{
-        padding: 8%;
-    }
     .btn+div{
         gap: 10px;
     }
-    button{
-        height:30px ;
+    .cont{
+        width: 350px;
+    }
+    .btn > input{
+        height: 45px;
+    }
+    .ls-fields{
+        gap: 20px;
+    }
+    .field p{
+        display: none;
+    }
+    .field input{
+        font-size: 16px;
+    }
+    .field input::placeholder{
+        color: grey;
     }
 }

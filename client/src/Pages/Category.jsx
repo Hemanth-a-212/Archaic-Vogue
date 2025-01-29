@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 import { webContext } from '../Context/webContext';
 import './css/Category.css';
+import banner from "../Components/Assets/banner"
 import Item from '../Components/Items/Item';
 
 const Category = (props) => {
-  const {all_product,banner}=useContext(webContext);
+  const {all_product}=useContext(webContext);
   return (
     <div className='category'>
       {banner.map((item)=>{

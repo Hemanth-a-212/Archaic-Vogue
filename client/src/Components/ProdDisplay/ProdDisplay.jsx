@@ -13,8 +13,6 @@ const ProdDisplay = (props) => {
         <div className="prodright">
             <h1>{product.name}</h1>
             <div className="rating">
-                <img src={product.star} alt="" />
-                <p>()</p>
             </div>
             <h2>₹{product.price}</h2>
             <div className='description'>

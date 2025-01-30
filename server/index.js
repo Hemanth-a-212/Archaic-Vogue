@@ -19,11 +19,10 @@ app.use(cors());
 
 //database connection 
 const db = new pg.Client({
-    user:"postgres",
-    host:"localhost",
-    database:"archaic_vogue",
-    password:"Hemanth@0201",
-    port:5432
+    connectionString: process.env.DATABASE_URL, 
+    ssl: {
+        rejectUnauthorized: false,
+    },
 });
 
 db.connect( err =>{

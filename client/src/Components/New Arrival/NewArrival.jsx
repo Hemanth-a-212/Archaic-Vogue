@@ -4,8 +4,9 @@ import './NewArrival.css'
 
 const NewArrival = () => {
   const [new_arrival,setNew_arrival]=useState([]);
+  const url = "https://archaic-vogue-backend.onrender.com";
   useEffect(()=>{
-    fetch("http://localhost:5000/newarrival")
+    fetch(url+"/newarrival")
     .then((res)=>res.json())
     .then((data)=>setNew_arrival(data))
   },[])

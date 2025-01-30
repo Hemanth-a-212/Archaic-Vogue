@@ -14,7 +14,7 @@ function Navbar(){
    const {totalItemsInCart}=useContext(webContext);
    const menuRef = useRef();
    const user_ref=useRef();
-
+   const url = "https://archaic-vogue-backend.onrender.com";
    const toggleMenuDropdown = ()=>{
       setIsMenuOpen(p => !p);
    }
@@ -41,7 +41,7 @@ function Navbar(){
    }
 
    const delAccPopup = async()=>{
-      fetch("http://localhost:5000/deleteuser",{
+      fetch(url+"/deleteuser",{
          method:"DELETE",
          headers:{Accept:"application/form-data","auth-token":`${localStorage.getItem("auth-token")}`,"Content_type":"application/json"},
          body:""

@@ -7,9 +7,9 @@ const ListProduct = () => {
 
 const [allProd,setAllProd]=useState([])  
 const [prodInDB,setProdInDB]=useState( )
-
+const url = "https://archaic-vogue-backend.onrender.com";
 const fetchprod = async()=>{
-  await fetch("http://localhost:5000/allproducts")
+  await fetch(url+"/allproducts")
    .then((res)=>res.json()) 
    .then((data)=>{setAllProd(data)});
 }
@@ -28,7 +28,7 @@ useEffect(()=>{
 
 const deleteProd = async(id,name)=>{
   let resp;
-  await fetch("http://localhost:5000/removeproduct",{
+  await fetch(url+"/removeproduct",{
     method:"DELETE",
     headers:{
       Accept:'application/json',

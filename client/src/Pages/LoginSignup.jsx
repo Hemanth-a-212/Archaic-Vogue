@@ -14,6 +14,7 @@ const LoginSignup = () => {
   })
   const LoginRef = useRef(null);
   const SignupRef = useRef(null);
+  const url = "https://archaic-vogue-backend.onrender.com";
 
 useEffect(()=>{
   if(state==="Login" && LoginRef.current){
@@ -25,7 +26,7 @@ useEffect(()=>{
 
 const login = async ()=>{
   let resData;
-  await fetch("http://localhost:5000/login",{
+  await fetch(url+"/login",{
     method:"POST",
     headers:{Accept:"application/form-data","Content-Type":"application/json"},
     body:JSON.stringify(data)
@@ -41,7 +42,7 @@ const login = async ()=>{
 
 const signup = async ()=>{
   let resData;
-  await fetch("http://localhost:5000/signup",{
+  await fetch(url+"/signup",{
     method:"POST",
     headers:{Accept:"application/form-data","Content-Type":"application/json"},
     body:JSON.stringify(data)

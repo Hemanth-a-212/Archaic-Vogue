@@ -10,17 +10,18 @@ const cartdefault = () => {
     return cart;
 }
 
+const url = "https://archaic-vogue-backend.onrender.com";
 const ContextProvider = (props) => {
     const [all_product,setAll_product]=useState([]);
     const [cartItems,setCartItems]=useState(cartdefault());
     
     useEffect(()=> {
-        fetch("http://localhost:5000/allproducts")
+        fetch(url+"/allproducts")
         .then((res)=>res.json())
         .then((data)=>setAll_product(data));
 
         if(localStorage.getItem("auth-token")){
-            fetch("http://localhost:5000/getcart",{
+            fetch(url+"/getcart",{
                 method:"POST",
                 headers:{Accept:"application/form-data","auth-token":`${localStorage.getItem("auth-token")}`,"Content-Type":"application/json"},
                 body:""
@@ -32,7 +33,7 @@ const ContextProvider = (props) => {
     const addToCart = (itemId) => {
        setCartItems((p)=>({...p,[itemId]:p[itemId]+1}));
         if(localStorage.getItem("auth-token")){
-            fetch("http://localhost:5000/addtocart",{
+            fetch(url+"/addtocart",{
                 method:"POST",
                 headers:{Accept:"application/form-data","auth-token":`${localStorage.getItem("auth-token")}`,"Content-Type":"application/json"},
                 body:JSON.stringify({"itemId":itemId})
@@ -44,7 +45,7 @@ const ContextProvider = (props) => {
     const removefromCart = (itemId) => {
         setCartItems((p)=>({...p,[itemId]:p[itemId]-1}));
         if(localStorage.getItem("auth-token")){
-            fetch("http://localhost:5000/removefromcart",{
+            fetch(url+"/removefromcart",{
                 method:"POST",
                 headers:{Accept:"application/form-data","auth-token":`${localStorage.getItem("auth-token")}`,"Content-Type":"application/json"},
                 body:JSON.stringify({"itemId":itemId})

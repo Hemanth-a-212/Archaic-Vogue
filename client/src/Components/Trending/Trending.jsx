@@ -5,9 +5,9 @@ import Item from '../Items/Item'
 
 const Trending = () => {
   const [trendingDecor,setTrendingDecor]=useState([]);
-
+  const url = "https://archaic-vogue-backend.onrender.com";
   useEffect(()=>{
-    fetch("http://localhost:5000/trendingdecor")
+    fetch(url+"/trendingdecor")
     .then((res)=>res.json())
     .then((data)=>setTrendingDecor(data))
   },[])

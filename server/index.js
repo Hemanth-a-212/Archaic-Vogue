@@ -5,7 +5,7 @@ import multer from 'multer'
 import cors from 'cors'
 import path from 'path'
 import fs from 'fs'
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 import dotenv from 'dotenv'
 
 dotenv.config();

@@ -17,9 +17,14 @@ const port = process.env.PORT || 5000;
 app.use(express.json());
 app.use(cors());
 
+const DataBase = process.env.PG_DATABASE;
+const UserName = process.env.PG_USER;
+const Password = process.env.PG_PASSWORD;
+const Host = process.env.PG_HOST;
+const Port = process.env.PG_PORT;
 //database connection 
 const db = new pg.Client({
-    connectionString: process.env.DATABASE_URL, 
+    connectionString:`postgresql://${UserName}:${Password}@${Host}:${Port}/${DataBase}`, 
     ssl: {
         rejectUnauthorized: false,
     },
@@ -56,13 +61,12 @@ app.use('/images',express.static(uploadDir));
 //API 
 
 app.get('/',(req,res)=>{
-    console.log("Konichiwa");
+    res.send("Konichiwa");
 })
 
 // image upload route
 
 app.post("/upload",upload.single('product'),(req,res)=>{
-    console.log(req.file);
     try {
         if(!req.file){
             return res.status(400).json({success:0,message:"File not uploaded"});

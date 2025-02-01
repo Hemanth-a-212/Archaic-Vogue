@@ -82,7 +82,7 @@ function Navbar(){
             <div ref={user_ref} className="nav-login-cart">
                {localStorage.getItem("auth-token")?
                <><div><img className='user-icon' src={user_icon} alt="" onClick={()=>setIsUserOpen((prev) => !prev)} />
-               <div><Link to='/cart'><img src={cart_icon} alt="Cart icon" onClick={()=>{itemClicked();setmenu("cart")}}/></Link>
+               <div><Link style={{textDecoration:"none"}} to='/cart'><img src={cart_icon} alt="Cart icon" onClick={()=>{itemClicked();setmenu("cart")}}/></Link>
                {totalItemsInCart()?<div className="cart-item-count">{totalItemsInCart()}</div>:""}</div>
                </div>
                <div  className={`user-menu-dropdown ${isUserOpen && "user-menu-visible"}`}>
@@ -91,7 +91,7 @@ function Navbar(){
                </div>
                </>
                :
-                <Link to='/login'><button onClick={()=>{itemClicked();setmenu("login")}}>Login / Sign up</button></Link>} 
+                <Link to='/login'style={{textDecoration:"none"}}><button onClick={()=>{itemClicked();setmenu("login")}}>Login / Sign up</button></Link>} 
                
             </div>
          </div>   

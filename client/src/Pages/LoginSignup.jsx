@@ -25,35 +25,44 @@ useEffect(()=>{
 },[state])
 
 const login = async ()=>{
-  let resData;
-  await fetch(url+"/login",{
-    method:"POST",
-    headers:{Accept:"application/form-data","Content-Type":"application/json"},
-    body:JSON.stringify(data)
-  }).then((res)=>res.json()).then((data)=>resData=data)
-
-  if(resData.success){
-    localStorage.setItem("auth-token",resData.token);
-    window.location.replace("/");
-  }else{
-    alert(resData.errors);
+  try {
+    let resData;
+    await fetch(url+"/login",{
+      method:"POST",
+      headers:{Accept:"application/json","Content-Type":"application/json"},
+      body:JSON.stringify(data)
+    }).then((res)=>res.json()).then((data)=>resData=data).catch(alert("error fetching:login"))
+  
+    if(resData.success){
+      localStorage.setItem("auth-token",resData.token);
+      window.location.replace("/");
+    }else{
+      alert(resData.message);
+    }
+  } catch (error) {
+    alert("frontend error login:",error);
   }
 }
 
 const signup = async ()=>{
-  let resData;
-  await fetch(url+"/signup",{
-    method:"POST",
-    headers:{Accept:"application/form-data","Content-Type":"application/json"},
-    body:JSON.stringify(data)
-  }).then((res)=>res.json()).then((data)=>{console.log(data);resData=data;})
-
-  if(resData.success){
-    localStorage.setItem("auth-token",resData.token);
-    window.location.replace("/");
-  }else{
-    alert(resData.errors);
+  try {
+    let resData;
+    await fetch(url+"/signup",{
+      method:"POST",
+      headers:{Accept:"application/json","Content-Type":"application/json"},
+      body:JSON.stringify(data)
+    }).then((res)=>res.json()).then((data)=>{console.log(data);resData=data;}).catch(alert("error fetching:signup"))
+  
+    if(resData.success){
+      localStorage.setItem("auth-token",resData.token);
+      window.location.replace("/");
+    }else{
+      alert(resData.message);
+    }
+  } catch (error) {
+    alert("frontend error signup",error);
   }
+
 }
 
 const changeData = async(e)=>{

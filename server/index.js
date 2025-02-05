@@ -134,7 +134,7 @@ app.post("/signup",async(req,res)=>{
         const result = await db.query("SELECT * FROM users WHERE email = $1",[email]);
 
         if(result.rows.length>0)
-            return res.status(400).json({success:false, errors:'Email already exists'});
+            return res.status(400).json({success:false, message:'Email already exists'});
 
         let hashedpassword =await bcrypt.hash(password,12);
 
@@ -152,7 +152,7 @@ app.post("/signup",async(req,res)=>{
         return res.status(201).json({ success:true,token}); 
 
     } catch (err) {
-        console.error("Error duting signup: ",err);
+        console.error("Error during signup: ",err);
         return res.status(500).json({success:false, message: 'Server error' });
     }
 
@@ -171,15 +171,15 @@ app.post("/login",async(req,res)=>{
             const token = jwt.sign(data,process.env.JWT_SECRET_KEY)
             res.json({success:true,token})
           }else{
-            res.json({success:false,errors:"Wrong Password"})
+            res.status(500).json({success:false,message:"Wrong Password"})
           }
         }
         else{
-            res.json({success:false,errors:"Email Doesn't Exist"})
+            res.json({success:false,message:"Email Doesn't Exist"})
         }
     } catch (err) {
         console.error("Error during login:", err);
-        res.status(500).send("Internal server error");
+        return res.status(500).json({success:false, message: 'Server error' });
     }
    
 })

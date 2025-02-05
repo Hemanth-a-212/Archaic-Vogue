@@ -31,7 +31,7 @@ const login = async ()=>{
       method:"POST",
       headers:{Accept:"application/json","Content-Type":"application/json"},
       body:JSON.stringify(data)
-    }).then((res)=>res.json()).then((data)=>resData=data).catch(alert("error fetching:login"))
+    }).then((res)=>res.json()).then((data)=>resData=data).catch((err)=>console.error("Fetch error:",err.message));
   
     if(resData.success){
       localStorage.setItem("auth-token",resData.token);
@@ -51,7 +51,7 @@ const signup = async ()=>{
       method:"POST",
       headers:{Accept:"application/json","Content-Type":"application/json"},
       body:JSON.stringify(data)
-    }).then((res)=>res.json()).then((data)=>{console.log(data);resData=data;}).catch(alert("error fetching:signup"))
+    }).then((res)=>res.json()).then((data)=>{console.log(data);resData=data;}).catch((err)=>console.error("Fetch error:",err.message));
   
     if(resData.success){
       localStorage.setItem("auth-token",resData.token);
@@ -72,13 +72,23 @@ const changeData = async(e)=>{
   })
 }
 
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  if (state === "Login") {
+    await login();
+  } else {
+    await signup();
+  }
+};
+
   return (
     <div className='loginsignup'>
       <div>
       <div className="login-img">
         <img src={log_img} alt="" />
       </div>
-      <form className="cont" onSubmit={()=>state==="Login"?login():signup()}>
+      <form className="cont" onSubmit={(e)=>handleSubmit(e)}>
         <h1>{state}</h1>
         <div className="ls-fields">
           {state==='Sign Up'?<div className='field'>

@@ -22,7 +22,6 @@ function Navbar(){
    useEffect(()=>{
       const handleClickOutside = (e)=>{
             if(menuRef.current && !menuRef.current.contains(e.target)){
-               console.log("Click outside menu");
                setIsMenuOpen(false);
             }
             if(user_ref.current && !user_ref.current.contains(e.target)){

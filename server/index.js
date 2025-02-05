@@ -146,7 +146,6 @@ app.post("/signup",async(req,res)=>{
         const insertEmail = await db.query("INSERT INTO users (name,email,password,cartdata) VALUES ($1, $2, $3, $4) RETURNING *",[name,email,hashedpassword,JSON.stringify(cart)]);
 
         const newUser = insertEmail.rows[0]
-        console.log(insertEmail)
         const data = {user:{id:newUser.id}};
         const token = jwt.sign(data,process.env.JWT_SECRET_KEY);
        

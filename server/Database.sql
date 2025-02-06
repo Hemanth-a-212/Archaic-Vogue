@@ -1,4 +1,4 @@
-CREATE DATABASE archaic_vogue;
+CREATE DATABASE archaic_vogue_db_ujyo;
 
 CREATE TABLE product (
     id serial PRIMARY KEY,

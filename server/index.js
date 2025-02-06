@@ -1,14 +1,13 @@
 import express from 'express'
-import pg from 'pg'
 import jwt from 'jsonwebtoken'
 import multer from 'multer'
 import cors from 'cors'
 import path from 'path'
 import fs from 'fs'
 import bcrypt from 'bcryptjs'
-import dotenv from 'dotenv'
-
-dotenv.config();
+import db from "./db.js"
+import fetchUser from './Middleware/fetchUser.js'
+import "dotenv/config"
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -16,19 +15,6 @@ const port = process.env.PORT || 5000;
 //Middleware
 app.use(express.json());
 app.use(cors());
-
-const DataBase = process.env.PG_DATABASE;
-const UserName = process.env.PG_USER;
-const Password = process.env.PG_PASSWORD;
-const Host = process.env.PG_HOST;
-const Port = process.env.PG_PORT;
-//database connection 
-const db = new pg.Client({
-    connectionString:`postgresql://${UserName}:${Password}@${Host}:${Port}/${DataBase}`, 
-    ssl: {
-        rejectUnauthorized: false,
-    },
-});
 
 db.connect( err =>{
     if(err){
@@ -199,23 +185,6 @@ let prod = await db.query("SELECT * FROM product WHERE category = $1",["decor"])
 let trendingdecor = prod.rows.slice(0,4);
 res.send(trendingdecor);
 })
-
-//middleware to fetch user
-const fetchUser =async (req,res,next)=>{
-    const token = req.header("auth-token");
-    if(!token){
-        res.status(401).send({error:"please authenticate using valid token"})
-    }
-    else{
-        try {
-            const data = jwt.verify(token,process.env.JWT_SECRET_KEY);
-            req.user=data.user;
-            next();
-        } catch (err) {
-            res.status(401).send({error:"please authenticate using valid token"})
-        }
-    }
-}
 
 //add prod from cartdata
 

@@ -27,7 +27,7 @@ useEffect(()=>{
 const login = async ()=>{
   try {
     let resData;
-    await fetch(url+"/login",{
+    await fetch(url+"/api/user/login",{
       method:"POST",
       headers:{Accept:"application/json","Content-Type":"application/json"},
       body:JSON.stringify(data)
@@ -47,7 +47,7 @@ const login = async ()=>{
 const signup = async ()=>{
   try {
     let resData;
-    await fetch(url+"/signup",{
+    await fetch(url+"/api/user/signup",{
       method:"POST",
       headers:{Accept:"application/json","Content-Type":"application/json"},
       body:JSON.stringify(data)

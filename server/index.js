@@ -4,8 +4,8 @@ import multer from 'multer'
 import cors from 'cors'
 import path from 'path'
 import fs from 'fs'
-import bcrypt from 'bcryptjs'
-import db from "./db.js"
+import userRouter from './Route/userAuthRoute.js'
+import db from "./Config/db.js"
 import fetchUser from './Middleware/fetchUser.js'
 import "dotenv/config"
 
@@ -14,16 +14,10 @@ const port = process.env.PORT || 5000;
 
 //Middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors({origin: "https://archaic-vogue-frontend.onrender.com"}));
 
-db.connect( err =>{
-    if(err){
-        console.error("Error connecting to database:",err.message);
-        process.exit(1);
-    }
-    console.log("Database connected successfully")
-}); 
- 
+app.use("/api/user",userRouter)
+
 const uploadDir = './upload/images';
 if(!fs.existsSync(uploadDir)){
     fs.makdirSync(uploadDir);
@@ -113,63 +107,6 @@ app.get('/allproducts',async(req,res)=>{
 
 // API for adding user details
 
-app.post("/signup",async(req,res)=>{
-    let {email,password,name}=req.body;
-
-    try {
-        const result = await db.query("SELECT * FROM users WHERE email = $1",[email]);
-
-        if(result.rows.length>0)
-            return res.status(400).json({success:false, message:'Email already exists'});
-
-        let hashedpassword =await bcrypt.hash(password,12);
-
-        let cart = {}
-        for(let i=0;i<300;i++){
-            cart[i]=0;
-        }
-
-        const insertEmail = await db.query("INSERT INTO users (name,email,password,cartdata) VALUES ($1, $2, $3, $4) RETURNING *",[name,email,hashedpassword,JSON.stringify(cart)]);
-
-        const newUser = insertEmail.rows[0]
-        const data = {user:{id:newUser.id}};
-        const token = jwt.sign(data,process.env.JWT_SECRET_KEY);
-       
-        return res.status(201).json({ success:true,token}); 
-
-    } catch (err) {
-        console.error("Error during signup: ",err);
-        return res.status(500).json({success:false, message: 'Server error' });
-    }
-
-});
-
-//Login
-
-app.post("/login",async(req,res)=>{
-    try {
-        let {email,password} = req.body; 
-        const user = await db.query("SELECT * FROM users WHERE email = $1",[email]);
-        if(user.rows.length>0){
-          const match = await bcrypt.compare(password,user.rows[0].password);
-          if(match){
-            const data = {user:{id:user.rows[0].id}}
-            const token = jwt.sign(data,process.env.JWT_SECRET_KEY)
-            res.json({success:true,token})
-          }else{
-            res.status(500).json({success:false,message:"Wrong Password"})
-          }
-        }
-        else{
-            res.json({success:false,message:"Email Doesn't Exist"})
-        }
-    } catch (err) {
-        console.error("Error during login:", err);
-        return res.status(500).json({success:false, message: 'Server error' });
-    }
-   
-})
-
 // API for new Arrival
 
 app.get('/newarrival',async (req,res)=>{
@@ -199,15 +136,6 @@ app.post("/addtocart",fetchUser,async(req,res)=>{
 })
 
 //delete user 
-
-app.delete("/deleteuser",fetchUser, async(req,res)=>{
-    let {id}=req.user;
-    let deleted_user = await db.query("DELETE FROM users WHERE id = $1 RETURNING *",[id])
-    if(!deleted_user){
-        res.status(401).send("Error deleting user data");
-    }
-})
-
 //remove prod from  cartdata
 
 app.post("/removefromcart",fetchUser,async(req,res)=>{    

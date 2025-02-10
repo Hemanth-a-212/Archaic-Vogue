@@ -14,4 +14,13 @@ const db = new pg.Client({
     },
 });
 
+db.connect( err =>{
+    if(err){
+        console.error("Error connecting to database:",err.message);
+        process.exit(1);
+    }
+    console.log("Database connected successfully")
+}); 
+ 
+
 export default db;

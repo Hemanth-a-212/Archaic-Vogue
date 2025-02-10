@@ -40,7 +40,7 @@ function Navbar(){
    }
 
    const delAccPopup = async()=>{
-      fetch(url+"/deleteuser",{
+      fetch(url+"/api/user/deleteuser",{
          method:"DELETE",
          headers:{Accept:"application/form-data","auth-token":`${localStorage.getItem("auth-token")}`,"Content_type":"application/json"},
          body:""

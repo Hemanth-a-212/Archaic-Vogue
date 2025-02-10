@@ -1,10 +1,7 @@
 import express from 'express'
-import jwt from 'jsonwebtoken'
-import multer from 'multer'
 import cors from 'cors'
-import path from 'path'
-import fs from 'fs'
 import userRouter from './Route/userAuthRoute.js'
+import uploadRoute from "./Route/uploadRoute.js"
 import db from "./Config/db.js"
 import fetchUser from './Middleware/fetchUser.js'
 import "dotenv/config"
@@ -14,50 +11,16 @@ const port = process.env.PORT || 5000;
 
 //Middleware
 app.use(express.json());
+
 app.use(cors({origin: "https://archaic-vogue-frontend.onrender.com"}));
 
-app.use("/api/user",userRouter)
+app.use("/api/user",userRouter);
 
-const uploadDir = './upload/images';
-if(!fs.existsSync(uploadDir)){
-    fs.makdirSync(uploadDir);
-}
+app.use('/images',express.static("./upload/images"));
 
-// image storage 
+app.get('/',(req,res)=>{res.send("Konichiwa")});
 
-const storage = multer.diskStorage({
-    destination:(req,res,cb)=>{
-        return cb(null,uploadDir) ;
-    },
-    filename:(req,file,cb)=>{
-        return cb(null,`${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
-    }
-})
-
-const upload = multer({storage});
-
-app.use('/images',express.static(uploadDir));
-
-//API 
-
-app.get('/',(req,res)=>{
-    res.send("Konichiwa");
-})
-
-// image upload route
-
-app.post("/upload",upload.single('product'),(req,res)=>{
-    try {
-        if(!req.file){
-            return res.status(400).json({success:0,message:"File not uploaded"});
-        }
-        return res.json({success:1, image_url:`https://archaic-vogue-backend.onrender.com/images/${req.file.filename}`})
-    } catch (err) {
-        console.error("Error during file upload",err.message);
-        res.status(500).json({success:0,message:"Internal server error"});
-    }
-});
-
+app.use("/api",uploadRoute)
 app.post('/addproduct', async(req,res)=>{
     const {name,image,category,price} = req.body;
     try {

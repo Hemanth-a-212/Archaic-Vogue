@@ -4,8 +4,7 @@ import userRouter from './Route/userAuthRoute.js'
 import uploadRoute from "./Route/uploadRoute.js"
 import adminRoute from "./Route/adminRoute.js"
 import homeRoutes from "./Route/homeRoutes.js"
-import db from "./Config/db.js"
-import fetchUser from './Middleware/fetchUser.js'
+import cartRoutes from "./Route/cartRoutes.js"
 import "dotenv/config"
 
 const app = express();
@@ -40,50 +39,8 @@ app.use("/api",uploadRoute);
 
 app.use("/api/home",homeRoutes);
 
-//add prod from cartdata
+app.use("/api/cart",cartRoutes);
 
-app.post("/addtocart",fetchUser,async(req,res)=>{
-    let {id}=req.user;
-    let {itemId}=req.body;
-    let userData = await db.query("SELECT * FROM users WHERE id=$1",[id]);
-    let {cartdata}=userData.rows[0];
-    cartdata[itemId]+=1;
-    await db.query("UPDATE users SET cartdata = $1 WHERE id = $2",[cartdata,id]);
-    console.log("Added",itemId);
-})
+app.get("/health", (req, res) => {res.status(200).json({ status: "UP", message: "Server is running" });});
 
-//delete user 
-//remove prod from  cartdata
-
-app.post("/removefromcart",fetchUser,async(req,res)=>{    
-    let {id}=req.user;
-    let {itemId}=req.body;
-    let userData = await db.query("SELECT * FROM users WHERE id=$1",[id]);
-    let {cartdata}=userData.rows[0];
-    if(cartdata[itemId]>0){
-        cartdata[itemId]-=1;
-    }
-    await db.query("UPDATE users SET cartdata = $1 WHERE id = $2",[cartdata,id]);
-    console.log("Removed",itemId);
-})  
-
-//get cartdata
-app.get("/getcart",fetchUser,async(req,res)=>{
-    let {id}=req.user;
-    let userData = await db.query("SELECT * FROM users WHERE id = $1 ",[id])
-    let {cartdata}=userData.rows[0];
-    res.json(cartdata);
-})
-
-app.get("/health", (req, res) => {
-    res.status(200).json({ status: "UP", message: "Server is running" });
-});
-
-
-app.listen(port,(err)=>{
-    if(!err){
-        console.log(`Server running at port ${port}`);
-    }else{
-        console.log(`Error: ${err}`);
-    }
-})
+app.listen(port,(err)=>{!err ? console.log(`Server running at port ${port}`) : console.log(`Error: ${err}`)});

@@ -40,13 +40,19 @@ function Navbar(){
    }
 
    const delAccPopup = async()=>{
-      fetch(url+"/api/user/deleteuser",{
+      const token = localStorage.getItem("auth-token")
+      const delres = await fetch(url+"/api/user/deleteuser",{
          method:"DELETE",
-         headers:{Accept:"application/form-data","auth-token":`${localStorage.getItem("auth-token")}`,"Content_type":"application/json"},
-         body:""
-      });
-      localStorage.removeItem("auth-token");
-      window.location.replace('/')
+         headers:{Accept:"application/json","auth-token":token,"Content-type":"application/json"},
+      })
+      const resData = await delres.json();
+      if(resData.success){
+         localStorage.removeItem("auth-token");
+         window.location.replace('/');
+         alert(resData.message);
+      }else{
+         alert("Error deleting user");
+      }
    }
 
    const closePopUp = ()=>{

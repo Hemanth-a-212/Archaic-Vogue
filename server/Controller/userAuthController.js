@@ -60,8 +60,10 @@ const login = async(req,res)=>{
 const deleteuser = async(req,res)=>{
     let {id}=req.user;
     let deleted_user = await db.query("DELETE FROM users WHERE id = $1 RETURNING *",[id])
-    if(!deleted_user){
-        res.status(401).send("Error deleting user data");
+    if(deleted_user){
+        res.status(201).json({success:true,message:"Deleted user successfully"});
+    }else{
+        res.status(401).json ({success:false});
     }
 }
 

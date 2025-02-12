@@ -23,7 +23,7 @@ const ContextProvider = (props) => {
         const token = localStorage.getItem("auth-token");
 
         if(token){
-            fetch(url+"/getcart",{
+            fetch(url+"/api/cart/getcart",{
                 method:"GET",
                 headers:{"Accept":"application/json","auth-token":token,"Content-Type":"application/json"},
             }).then((res)=>res.json())
@@ -35,7 +35,7 @@ const ContextProvider = (props) => {
     const addToCart = (itemId) => {
        setCartItems((p)=>({...p,[itemId]:p[itemId]+1}));
         if(localStorage.getItem("auth-token")){
-            fetch(url+"/addtocart",{
+            fetch(url+"/api/cart/addtocart",{
                 method:"POST",
                 headers:{Accept:"application/form-data","auth-token":`${localStorage.getItem("auth-token")}`,"Content-Type":"application/json"},
                 body:JSON.stringify({"itemId":itemId})
@@ -47,7 +47,7 @@ const ContextProvider = (props) => {
     const removefromCart = (itemId) => {
         setCartItems((p)=>({...p,[itemId]:p[itemId]-1}));
         if(localStorage.getItem("auth-token")){
-            fetch(url+"/removefromcart",{
+            fetch(url+"/api/cart/removefromcart",{
                 method:"POST",
                 headers:{Accept:"application/form-data","auth-token":`${localStorage.getItem("auth-token")}`,"Content-Type":"application/json"},
                 body:JSON.stringify({"itemId":itemId})

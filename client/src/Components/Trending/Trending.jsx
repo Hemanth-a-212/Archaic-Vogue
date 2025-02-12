@@ -7,7 +7,7 @@ const Trending = () => {
   const [trendingDecor,setTrendingDecor]=useState([]);
   const url = "https://archaic-vogue-backend.onrender.com";
   useEffect(()=>{
-    fetch(url+"/trendingdecor")
+    fetch(url+"/api/home/trendingdecor")
     .then((res)=>res.json())
     .then((data)=>setTrendingDecor(data))
   },[])

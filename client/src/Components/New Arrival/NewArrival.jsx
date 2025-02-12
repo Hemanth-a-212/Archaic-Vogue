@@ -6,7 +6,7 @@ const NewArrival = () => {
   const [new_arrival,setNew_arrival]=useState([]);
   const url = "https://archaic-vogue-backend.onrender.com";
   useEffect(()=>{
-    fetch(url+"/newarrival")
+    fetch(url+"/api/home/newarrival")
     .then((res)=>res.json())
     .then((data)=>setNew_arrival(data))
   },[])

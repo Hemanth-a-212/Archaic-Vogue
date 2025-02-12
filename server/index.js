@@ -3,6 +3,7 @@ import cors from 'cors'
 import userRouter from './Route/userAuthRoute.js'
 import uploadRoute from "./Route/uploadRoute.js"
 import adminRoute from "./Route/adminRoute.js"
+import homeRoutes from "./Route/homeRoutes.js"
 import db from "./Config/db.js"
 import fetchUser from './Middleware/fetchUser.js'
 import "dotenv/config"
@@ -25,6 +26,8 @@ app.use(cors({origin: (origin,callback)=>{
     }
 } }));
 
+//Routes
+
 app.get('/',(req,res)=>{res.send("Konichiwa")});
 
 app.use("/api/user",userRouter);
@@ -33,25 +36,9 @@ app.use("/api/admin",adminRoute);
 
 app.use('/images',express.static("./upload/images"));
 
-app.use("/api",uploadRoute)
+app.use("/api",uploadRoute);
 
-// API for adding user details
-
-// API for new Arrival
-
-app.get('/newarrival',async (req,res)=>{
-    let prod = await db.query("SELECT * FROM product")
-    let new_arrival = prod.rows.slice(-8);
-    res.send(new_arrival)
-})
-
-// API for trending in decor
-
-app.get("/trendingdecor",async(req,res)=>{
-let prod = await db.query("SELECT * FROM product WHERE category = $1",["decor"]);
-let trendingdecor = prod.rows.slice(0,4);
-res.send(trendingdecor);
-})
+app.use("/api/home",homeRoutes);
 
 //add prod from cartdata
 

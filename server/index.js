@@ -121,6 +121,11 @@ app.post("/getcart",fetchUser,async(req,res)=>{
     res.json(cartdata);
 })
 
+app.get("/health", (req, res) => {
+    res.status(200).json({ status: "UP", message: "Server is running" });
+});
+
+
 app.listen(port,(err)=>{
     if(!err){
         console.log(`Server running at port ${port}`);

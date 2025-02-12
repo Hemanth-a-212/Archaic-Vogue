@@ -16,7 +16,7 @@ const ContextProvider = (props) => {
     const [cartItems,setCartItems]=useState(cartdefault());
     
     useEffect(()=> {
-        fetch(url+"/allproducts")
+        fetch(url+"/api/admin/allproducts")
         .then((res)=>res.json())
         .then((data)=>setAll_product(data));
 

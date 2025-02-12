@@ -9,7 +9,7 @@ const [allProd,setAllProd]=useState([])
 const [prodInDB,setProdInDB]=useState( )
 const url = "https://archaic-vogue-backend.onrender.com";
 const fetchprod = async()=>{
-  await fetch(url+"/allproducts")
+  await fetch(url+"/api/admin/allproducts")
    .then((res)=>res.json()) 
    .then((data)=>{setAllProd(data)});
 }
@@ -28,7 +28,7 @@ useEffect(()=>{
 
 const deleteProd = async(id,name)=>{
   let resp;
-  await fetch(url+"/removeproduct",{
+  await fetch(url+"/api/admin/removeproduct",{
     method:"DELETE",
     headers:{
       Accept:'application/json',

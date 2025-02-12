@@ -114,7 +114,7 @@ app.post("/removefromcart",fetchUser,async(req,res)=>{
 })  
 
 //get cartdata
-app.post("/getcart",fetchUser,async(req,res)=>{
+app.get("/getcart",fetchUser,async(req,res)=>{
     let {id}=req.user;
     let userData = await db.query("SELECT * FROM users WHERE id = $1 ",[id])
     let {cartdata}=userData.rows[0];

@@ -20,13 +20,15 @@ const ContextProvider = (props) => {
         .then((res)=>res.json())
         .then((data)=>setAll_product(data));
 
-        if(localStorage.getItem("auth-token")){
+        const token = localStorage.getItem("auth-token");
+
+        if(token){
             fetch(url+"/getcart",{
-                method:"POST",
-                headers:{Accept:"application/form-data","auth-token":`${localStorage.getItem("auth-token")}`,"Content-Type":"application/json"},
-                body:""
+                method:"GET",
+                headers:{"Accept":"application/json","auth-token":token,"Content-Type":"application/json"},
             }).then((res)=>res.json())
             .then((data)=>setCartItems(data))
+            .catch((err) => console.error("Fetch error:", err.message));
         }
     },[])
 

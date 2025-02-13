@@ -136,6 +136,7 @@
 .user-menu-dropdown{
     background-color: aliceblue;
     padding: 25px;
+    width: auto;
     border-radius: 10px;
     position: absolute;
     text-wrap: nowrap;

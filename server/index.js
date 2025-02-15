@@ -10,7 +10,7 @@ import "dotenv/config"
 const app = express();
 const port = process.env.PORT || 5000;
 const allowedOrigins = [
-    "https://archaic-vogue-frontend.onrender.com",
+    "https://archaic-vogue.onrender.com",
     "https://archaic-vogue-admin.onrender.com"
 ];
 
@@ -27,7 +27,7 @@ app.use(cors({origin: (origin,callback)=>{
 
 //Routes
 
-app.get('/',(req,res)=>{res.send("Konichiwa")});
+app.get('/',(req,res)=>{res.send("Hello")});
 
 app.use("/api/user",userRouter);
 

@@ -12,7 +12,7 @@ const Trending = () => {
     .then((data)=>setTrendingDecor(data))
   },[])
   return (
-    <div className='trending'>
+    <div className='trending' id='products-section'>
       <h1>Trending in Decor</h1>
       <hr />
       <div className="trending-decor">

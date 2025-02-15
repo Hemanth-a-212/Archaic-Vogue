@@ -3,6 +3,12 @@ import './Hero.css'
 import right_arrow_icon from '../Assets/right_arrow_icon_hero.png'
 
 const Hero = () => {
+  const scrollToProducts = ()=>{
+    const prodSection = document.getElementById("products-section");
+    if(prodSection){
+      prodSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
   return (
     <div className='hero'>
       <div className="hero-outer">
@@ -12,7 +18,7 @@ const Hero = () => {
              A style that echoes through endless time.<br/>
              Classic and quiet, in every seam,<br/>
              For those who live beyond the dream.</p>
-            <button className='hero-btn'>
+            <button className='hero-btn' onClick={scrollToProducts}>
               <div>SHOP NOW</div>
               <img src={right_arrow_icon} alt="" />
             </button>

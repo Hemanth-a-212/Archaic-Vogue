@@ -40,18 +40,27 @@ function Navbar(){
    }
 
    const delAccPopup = async()=>{
-      const token = localStorage.getItem("auth-token")
-      const delres = await fetch(url+"/api/user/deleteuser",{
-         method:"DELETE",
-         headers:{Accept:"application/json","auth-token":token,"Content-type":"application/json"},
-      })
-      const resData = await delres.json();
-      if(resData.success){
-         localStorage.removeItem("auth-token");
-         window.location.replace('/');
-         alert(resData.message);
-      }else{
-         alert("Error deleting user");
+      try {
+         const token = localStorage.getItem("auth-token")
+         if (!token) {
+            alert("No token found. Please log in.");
+            return;
+         }
+         const delres = await fetch(url+"/api/user/deleteuser",{
+            method:"DELETE",
+            headers:{Accept:"application/json","auth-token":token,"Content-Type":"application/json"},
+         });
+         const resData = await delres.json();
+         if(resData.success){
+            localStorage.removeItem("auth-token");
+            window.location.replace('/');
+            alert(resData.message);
+         }else{
+            alert(resData.message||"Error deleting user");
+         }
+      } catch (err) {
+         console.error("Fetch error:", err);
+         alert("An error occurred while deleting the user.");
       }
    }
 

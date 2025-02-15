@@ -58,13 +58,21 @@ const login = async(req,res)=>{
 }
 
 const deleteuser = async(req,res)=>{
+try {
     let {id}=req.user;
-    let deleted_user = await db.query("DELETE FROM users WHERE id = $1 RETURNING *",[id])
-    if(deleted_user){
-        res.status(201).json({success:true,message:"Deleted user successfully"});
-    }else{
-        res.status(401).json ({success:false});
+    if (!id){
+        return res.status(400).json({ success: false, message: "User ID is required"});
     }
+    let deleted_user = await db.query("DELETE FROM users WHERE id = $1 RETURNING *",[id])
+    if(deleted_user.rows.length>0){
+        res.status(200).json({success:true,message:"Deleted user successfully"});
+    }else{
+        res.status(401).json ({success:false,message:"User not found"});
+    }
+} catch (err) {
+    console.error("Error deleting user:", error);
+    res.status(500).json({ success: false, message: "Internal server error" });
+}
 }
 
 export {login,signup,deleteuser}

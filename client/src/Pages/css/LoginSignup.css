@@ -9,10 +9,15 @@
     width: fit-content;
     margin:50px auto;
     display: flex;
+    justify-content: center;
+    gap: 0px;
 }
 .login-img>img{
     width: auto;
     height: 100%;
+}
+.login-img{
+    width: 250px;
 }
 
 .cont{
